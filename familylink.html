@@ -1,175 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Family Link</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg-1: #060812;
-    --bg-2: #0f1320;
-    --glass: rgba(255,255,255,0.03);
-    --muted: rgba(255,255,255,0.12);
-    --text: #e9f3fb;
-    --subtext: #b9c6d4;
-    --accent-c: #7fe7ff;
-    --accent-v: #a67aff;
-    --accent-gold: #ffd58a;
-    --glass-border: rgba(255,255,255,0.04);
-    --card-shadow: 0 8px 30px rgba(5,10,20,0.6);
-    --radius: 14px;
-  }
-
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0}
-  body{
-    font-family:"Kanit",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    background:
-      radial-gradient(1200px 400px at 10% 10%, rgba(166,122,255,0.06), transparent 8%),
-      radial-gradient(900px 300px at 90% 90%, rgba(127,231,255,0.03), transparent 10%),
-      linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding:28px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    gap:24px;
-    min-height:100vh;
-  }
-
-  .container{
-    width:100%;
-    max-width:980px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border);
-    border-radius:20px;
-    padding:30px;
-    box-shadow: var(--card-shadow);
-    backdrop-filter: blur(6px) saturate(120%);
-    -webkit-backdrop-filter: blur(6px) saturate(120%);
-    overflow:hidden;
-  }
-
-  header{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    margin-bottom:20px;
-  }
-
-  .logo {
-    width:56px;
-    height:56px;
-    border-radius:12px;
-    background:linear-gradient(135deg,var(--accent-v),var(--accent-c));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#021018;
-    font-weight:700;
-    font-size:20px;
-    box-shadow:0 6px 20px rgba(125,90,255,0.14), inset 0 -6px 18px rgba(255,255,255,0.02);
-  }
-
-  h1{
-    font-size:1.45rem;
-    margin:0;
-    color:var(--text);
-    letter-spacing:0.2px;
-  }
-
-  .subtitle{
-    margin-top:4px;
-    font-size:0.92rem;
-    color:var(--subtext);
-  }
-
-  details{
-    margin-bottom:12px;
-    border-radius:12px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border);
-    padding:12px;
-    transition:box-shadow .22s ease, transform .16s ease;
-  }
-
-  details[open]{
-    box-shadow: 0 18px 40px rgba(12,18,28,0.65), 0 0 28px rgba(127,231,255,0.03);
-    transform: translateY(-2px);
-  }
-
-  summary{
-    list-style:none;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:6px 4px;
-    user-select:none;
-    color:var(--text);
-    font-weight:600;
-    font-size:1.02rem;
-    outline:none;
-  }
-
-  .chev{
-    width:34px;height:34px;border-radius:10px;
-    display:inline-grid;place-items:center;
-    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.02);
-    color:var(--accent-c);
-    transition: transform .18s ease;
-    box-shadow: 0 6px 18px rgba(10,14,20,0.5);
-    font-size:14px;
-  }
-
-  details[open] summary .chev{ transform: rotate(90deg); color:var(--accent-v) }
-
-  .title{ flex:1 }
-
-  .content{
-    margin-top:12px;
-    padding:10px 6px 6px 10px;
-    position:relative;
-    background: linear-gradient(180deg, rgba(127,231,255,0.012), transparent);
-    border-radius:8px;
-  }
-
-  .content::before{
-    content:"";
-    position:absolute;
-    left:0;top:0;bottom:0;
-    width:4px;
-    border-radius:6px;
-    background: linear-gradient(180deg, var(--accent-c), var(--accent-v));
-  }
-
-  .content p{ color:var(--subtext); line-height:1.6; margin:0 0 10px 0; font-size:0.96rem }
-  .content ul{ color:var(--subtext); margin:0 0 10px 20px; line-height:1.6 }
-
-  details details{
-    margin-top:10px;
-    padding:10px;
-    border-radius:10px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.008));
-    border:1px dashed rgba(255,255,255,0.02);
-  }
-
-  details details summary{
-    font-weight:600;
-    font-size:0.98rem;
-    color:var(--text);
-  }
-  details details .nested-content p{ color:#c5d7e6; font-size:0.92rem; margin:0 }
-
-  summary:focus{ box-shadow:0 0 0 4px rgba(127,231,255,0.07); border-radius:10px; outline:none }
-  summary:active, summary:hover{ transform: translateY(-2px) }
-  details summary::-webkit-details-marker{ display:none }
-
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Family Link</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Nebuli-Labs/Docs/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <main class="container">
@@ -182,109 +18,183 @@
     </header>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">BEST EXPLOIT FOR NOW (creds. to rifting)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Use the guide from the Family Link Discord Server <a href="https://discord.com/channels/1268295274229403710/1425682638659649556">Here</a></p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Family Link Update Blocker (NextDNS)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Follow the Steps from Rifting_Real <a href="https://gist.github.com/rifting/f6deeb89e1fae4b2eaa127a33dfe5a98">Here</a></p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">TOTP (Shared Secret)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Follow the Steps from Rifting_Real <a href="https://gist.github.com/rifting/732a45adf8ebacfa0e1fda0a66662570">Here</a></p>
+        <p>* Note that this is the same steps, you just have to use them on your parent/guardian device</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Chronolink (Bypass Time-Based Features)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Follow the Steps from Rifting_Real <a href="https://github.com/rifting/chronolink">Here</a></p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Family Link Pinhole</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Prevents parents from seeing activity and changing FL settings (Note they might get suspicions if you have no activity)</p>
+        <p>* Follow the steps from L-A-U-G-H-I-N-G <a href="https://github.com/l-a-u-g-h-i-n-g/familylink-pihole">Here</a></p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">New User Bypass</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* (This does not work on versions above 1.0.7.0, such as HyperOS 2.0.1.0 or 2.0.2.0)</p>
+        <p>* Go to the app store and download an app named “Hidden Settings” This should be the icon with a dark gray background and two gears.</p>
+        <p>* If you can’t download the app, this text is collapsible for more instructions</p>
+        <p>* Enable dual apps and try to access dual app chrome By clicking on some links in certain dual apps. Once accessed, try to search for "hidden settings playstore" and click on the google link in order to access dual app playstore</p>
+        <p>* In dual app playstore, install the app and open it (if the download progression is stuck or paused fully close dual app playstore and open it again and the download will resume)</p>
+        <p>* Once opened, search for multiple users. If you're lucky, an activity will pop out called "multiple users". Before clicking it, make sure you fully close the settings app in the recent tabs if you ever opened it.</p>
+        <p>* After clicking it, it will lead you to the multiple users settings. Create a new user and you're good to go.</p>
+        <p>* Pros of creative a new User ⇩</p>
+        <p>basically a user without parental controls, unrestricted browsers, download anything like apps in playstore or even third party apps. It most likely won’t alert your parents.</p>
+        <p>* Cons ⇩</p>
+        <p>can't create a hotspot in that user, in order to do this go back to the user with family link and turn on your hotspot, then switch back to the newly created user profile.</p>
+        <p>can't enable developer options</p>
+        <p>some settings are missing.</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Temporary Guest Profile</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* (Only works on Android 14 and One UI 6 and above)</p>
+        <p>* Go into settings >> Device Care >> Maintenance mode (near bottom of page) >> Turn on >> Restart</p>
+        <p>* This puts you into a temporary guest mode where nothing is saved, and no restrictions are added.</p>
+        <p>* HOW TO EXIT: Go back into maintenance mode in settings, the turn it off</p>
+        <p>* (Credit to u/Far_Race1156 on Reddit)</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Clone apps (and a workaround for people that don't have it)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* (Any software newer than 2.0.1.0 is blocking making dual apps)</p>
+        <p>* Go to security >> Scroll >> Clone apps >> Create</p>
+        <p>WORKAROUND</p>
+        <p>* Install Calculator app hider >> Set a pin >> Put the pin in the calculator >> Add the apps >> Done</p>
+        <p>* Remember the parents can see “Calculator: App and Photo Hider” so if you can install apk’s and can use a pc use APKTOOL to change the name and later installing it</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Pseudo Browser (XIAOMI)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Go to the settings >> Phone info >> Legal information >> Privacy Policy >> click the first green link (should look like “click here”) >> scroll down >> IR Contacts >> Scroll down to the captcha and click “Privacy” >> 9 squares >> Click on Google Or YouTube</p>
+        <p>* If you didnt understand <a href="https://www.reddit.com/r/familylink/comments/1kza3tx/xiaomi_google_chrome_during_locked_device/">Here's the Reddit post</a></p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Viber downtime bypass (will probably not work to set as dialer since it only works on old phones)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Download Viber and register >> Select it as the default dialer app >> When downtime arrives get/send a link (<a href="https://duckduckgo.com">https://duckduckgo.com</a>) and you can have a browser during downtime (remember to check in the settings and put open links internally)</p>
+        <p>* If you can't have access of link because its blocked by family link then use a proxy (i would recommend CroxyProxy since it’s fast and probably isn’t blocked by your parent)</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">A.I. During Downtime (2 Methods)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* The first method consist of installing fooview, giving it admin access, and when downtime arrives you can use different A.I.’s (If you have time limit then you can use the integrated browser)</p>
+        <p>* The second method is necessary being in the United States and calling the number +1-800-242-8478 This will give you 15 minutes per month. Wouldn’t recommend but still a great method IMO</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">TrueCaller (SMS During Downtime) (Not Tested)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>* Download TrueCaller >> Set It Up (Including it making it as the default dialer app) >> Wait for BedTime >> You’re Done</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Samsung Pseudo Browser</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>Crossjbly ← Credits :)</p>
+        <p>* Step 1: go to Settings > About phone > Legal information > Samsung Legal > Health and safety</p>
+        <p>* Step 2: Click English</p>
+        <p>* Step 3: Click on the www.fda.gov link</p>
+        <p>* Step 4: Scroll down and click the YouTube logo</p>
+        <p>* Step 5: Click the search button</p>
+        <p>* Step 6: Search for "google link in description"</p>
+        <p>* Step 7: Find a video and go to the description and click the link</p>
+        <p>* Step 8: Profit</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Downtime bypass (developer options needed) (Creds. Yosh)</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>so basically you need to have dev options enabled for this to work. another alternative is to change the date & time but i find this too buggy.</p>
+        <p>step 1: download fake gps from playstore (<a href="https://play.google.com/store/apps/details?id=com.lexa.fakegps&hl=en_US">https://play.google.com/store/apps/details?id=com.lexa.fakegps&hl=en_US</a>)</p>
+        <p>step 2: enable mock location from developer options.</p>
+        <p>step 3:set your desired location (will set your time to that location) ps: dont use any apps that require location ex: google maps, snapchat, etc. or disable the location permissions</p>
       </div>
     </details>
 
     <details>
-      <summary><span class="chev">▶</span><span class="title">Placeholder</span></summary>
+      <summary><span class="chev">▶</span><span class="title">Unblocked Browser</span></summary>
       <div class="content">
-        <p>Placeholder</p>
+        <p>Prerequisites:</p>
+        <ul>
+          <li>Android Device</li>
+          <li>Family Link</li>
+          <li>Device needs to be locked by Family Link.</li>
+          <li>Connected to internet with editable DNS settings.</li>
+        </ul>
+        <p>Disadvantages:</p>
+        <ul>
+          <li>Can't open installed apps.</li>
+          <li>Might be a little buggy.</li>
+        </ul>
+        <p>Advantages:</p>
+        <ul>
+          <li>Can use websites like TikTok or Discord.</li>
+        </ul>
+        <p>Instructions:</p>
+        <ol>
+          <li>Open the "Settings" on your Android device if its not blocked when on lockdown.</li>
+          <li>Navigate to "Wi-Fi" settings.</li>
+          <li>Tap the cog wheel icon next to your network.</li>
+          <li>Select "View More" or "Advanced".</li>
+          <li>Tap "IP Settings" and choose "Static".</li>
+          <li>In the first DNS box, enter 150.136.163.0. (dns from incognito kajig)</li>
+          <li>In the second DNS box, enter 0.0.0.0.</li>
+          <li>Back out and tap "Sign into Network".</li>
+          <li>Select "Browse Incognito" and leave the browser open. Then, return to Wi-Fi settings.</li>
+          <li>Change IP Settings back to "DHCP" and tap "Save".</li>
+          <li>Go back to the browser, and the site will be unblocked.</li>
+        </ol>
       </div>
     </details>
+
+    <details>
+      <summary><span class="chev">▶</span><span class="title">Recovery eraser exploit</span></summary>
+      <div class="content">
+        <p class="warning">[THIS EXPLOIT WILL ERASE YOUR MEMORY! YOU WILL LOOSE YOUR DATA BACK IT UP PLEASE FOR FUCKS SAKE]</p>
+        <p>For this exploit you need to shutdown completely your phone then turn it on put when it starts turning on IMMEDIATELY press shutdown and volume up at the same time and hold them consistently. After that the recovery screen should show up, navigate to reset memory or erase everything or whatever it's called. After going past the 3000 warnings the storage will be completely erased and remember to make a new google account!</p>
+      </div>
+    </details>
+
   </main>
 </body>
 </html>
